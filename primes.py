@@ -49,15 +49,18 @@ def primes_naive(n):
     return primes
 
 
-def polar_plot(r, theta, area=0.01):
+def polar_plot(r, theta, area=0.01, show_grid=True):
     bg_color = '#000000'
 
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='polar')
-    ax.grid(False)
     ax.set_yticklabels([])
-    ax.set_facecolor(bg_color)
-    fig.patch.set_facecolor(bg_color)
+
+    if not show_grid:
+        ax.grid(False)
+        ax.set_facecolor(bg_color)
+        fig.patch.set_facecolor(bg_color)
+
     c = ax.scatter(r, theta, marker="o", s=area)
     plt.show()
 
@@ -81,3 +84,7 @@ if __name__ == '__main__':
 
     for N, n in plots:
         polar_plot(p[:N], p[:N], area=n)
+
+    # Plot it again, make it look nice
+    for N, n in plots:
+        polar_plot(p[:N], p[:N], area=n, show_grid=False)
