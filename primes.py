@@ -14,13 +14,18 @@ def primes_sieve_supercharged(n):
 
 
 def primes_sieve(n):
+    # Array of possible primes
     primes = np.ones(n, dtype=bool)
-    primes[0] = primes[1] = False
+
+    # 0 and 1 are not prime numbers
+    primes[0] = False
+    primes[1] = False
 
     for i in range(2, n):
         if primes[i]:
             primes[i**2::i] = False
 
+    # Prime numbers are the indices of the True values
     return np.flatnonzero(primes)
 
 
@@ -40,9 +45,9 @@ def is_prime(n):
 
 
 def primes_naive(n):
-    primes = [2]
+    primes = []
 
-    for i in range(3, n):
+    for i in range(2, n):
         if is_prime(i):
             primes.append(i)
 
@@ -80,8 +85,9 @@ if __name__ == '__main__':
 
     p = primes_sieve_supercharged(num_primes)
 
-    plots = [(100, 1.5), (2500, 1.5), (1000000, 0.005)]
+    plots = [(100, 1.7), (2500, 1.5), (1000000, 0.01)]
 
+    # Plot it with white background and axes
     for N, n in plots:
         polar_plot(p[:N], p[:N], area=n)
 
