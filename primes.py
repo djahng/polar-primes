@@ -66,7 +66,7 @@ def polar_plot(r, theta, area=0.01, show_grid=True):
         ax.set_facecolor(bg_color)
         fig.patch.set_facecolor(bg_color)
 
-    c = ax.scatter(r, theta, marker="o", s=area)
+    ax.scatter(r, theta, marker="o", s=area)
     plt.show()
 
 
@@ -81,11 +81,11 @@ def timer(f, n=1000):
 
 
 if __name__ == '__main__':
-    num_primes = 1000000
+    num_primes = 10000000
 
     p = primes_sieve_supercharged(num_primes)
 
-    plots = [(100, 1.7), (2500, 1.5), (1000000, 0.01)]
+    plots = [(100, 1.7), (2500, 1.5), (100000, 0.05), (num_primes, 0.001)]
 
     # Plot it with white background and axes
     for N, n in plots:
